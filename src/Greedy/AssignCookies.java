@@ -17,7 +17,7 @@ Explanation : Cookie 1 satisfies student 1 and cookie 2 satisfies student 2. The
 public class AssignCookies {
     public static void main(String[] args) {
         int[] student = {1,2,3};
-        int[] cookies = {1,1};
+        int[] cookies = {1,3};
         System.out.println(maxStudent(cookies,student));
 
     }
