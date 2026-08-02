@@ -11,7 +11,6 @@ public class MinNumerOfCoinChange {
     }
 
     public static int minCoins(int[] arr, int sum, int n) {
-
         // Amount formed
         if(sum == 0)
             return 0;
@@ -23,15 +22,8 @@ public class MinNumerOfCoinChange {
         // Take or skip
         if(arr[n-1] <= sum) {
 
-            int take =
-                    1 + minCoins(arr,
-                            sum - arr[n-1],
-                            n);
-
-            int notTake =
-                    minCoins(arr,
-                            sum,
-                            n-1);
+            int take = 1 + minCoins(arr, sum - arr[n-1], n);
+            int notTake = minCoins(arr, sum, n-1);
 
             return Math.min(take, notTake);
         }
