@@ -1,4 +1,4 @@
-package DP;
+package DP.OptimalGame;
 
 import java.util.Arrays;
 
