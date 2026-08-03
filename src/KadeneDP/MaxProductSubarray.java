@@ -16,10 +16,10 @@ public class MaxProductSubarray {
         int n = arr.length;
         int[] dp = new int[n];
         dp[0] = arr[0];
-        int max = arr[0];
+        int max = Integer.MIN_VALUE;
 
         for(int i=1;i<n;i++){
-            if(arr[i] == 0 || arr[i-1] ==0)
+            if(arr[i-1] ==0)
                 dp[i] = arr[i];
             else
                 dp[i] = dp[i-1]*arr[i] ;
