@@ -44,26 +44,30 @@ public class DetectCycle {
     }
 
 
-    public static LLNode startingPointCycle(LLNode node){
+    public static LLNode startingPointCycle(LLNode head) {
 
-        LLNode unknown = new LLNode(-1);
+        if (head == null || head.next == null)
+            return null;
 
-        if(node == null || node.next == null)
-            return unknown;
+        LLNode fast = head;
+        LLNode slow = head;
 
-        LLNode slow = node;
-        LLNode fast = node;
-
-        while(fast != null && fast.next != null){
-
-            if(fast.next == slow || fast.next.next == slow)
-                return slow;
+        while (fast != null && fast.next != null) {
 
             slow = slow.next;
             fast = fast.next.next;
 
-        }
-        return unknown;
-    }
+            if (slow == fast) {
+                LLNode meet = head;
 
+                while (slow != meet) {
+                    slow = slow.next;
+                    meet = meet.next;
+                }
+
+                return meet;
+            }
+        }
+        return null;
+    }
 }

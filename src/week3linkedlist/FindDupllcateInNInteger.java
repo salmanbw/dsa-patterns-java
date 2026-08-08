@@ -12,8 +12,14 @@ Explanation:
  */
 public class FindDupllcateInNInteger {
 
+    public static void main(String[] args) {
 
-    public int findDuplicate(int[] nums) {
+        int[] arr = {1,3,4,2,2};
+        System.out.println(findDuplicate(arr));
+    }
+
+
+    public static int findDuplicate(int[] nums) {
 
         int slow = nums[0];
         int fast = nums[0];
