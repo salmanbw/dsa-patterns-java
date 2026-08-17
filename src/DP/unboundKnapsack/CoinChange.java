@@ -4,8 +4,9 @@ public class CoinChange {
     public static void main(String[] args) {
 
         int[] arr = {2, 4,10};
-        int sum = 8;
-        System.out.println(recursiveCoinChange(arr,sum, arr.length));
+        int[] arr1 = {1,2,5};
+        int sum = 11;
+        System.out.println(recursiveCoinChange(arr1,sum, arr1.length));
 
     }
 
