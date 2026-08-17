@@ -1,50 +1,62 @@
 package DP.unboundKnapsack;
 
+import java.util.Arrays;
+
 public class MinNumerOfCoinChange {
 
     static int INF = (int)1e9;
     public static void main(String[] args) {
 
         int[] arr = {2, 4,10};
-        int sum = 8;
-        System.out.println(recursiveMinCoinChange(arr,sum, arr.length));
+        int amount = 8;
+        int n = arr.length;
+
+
+        int[][] dp = new int[n+1][amount+1];
+        for(int i=0;i<n;i++)
+            Arrays.fill(dp[i], -1);
+
+        int total = optimizedChange(arr,n-1,amount,dp);
+        int result =0;
+        if(total == 1000000)
+             result = -1;
+        else
+            result = total;
+
+        System.out.println(result);
     }
 
-    public static int minCoins(int[] arr, int sum, int n) {
-        // Amount formed
-        if(sum == 0)
+    public static int optimizedChange(int[] arr, int n, int amount, int[][] dp){
+
+        if(amount == 0)
             return 0;
 
-        // No coins left
-        if(n == 0)
-            return INF;
+        if(n < 0)
+            return 1000000;
 
-        // Take or skip
-        if(arr[n-1] <= sum) {
+        if(dp[n][amount] != -1)
+            return dp[n][amount];
 
-            int take = 1 + minCoins(arr, sum - arr[n-1], n);
-            int notTake = minCoins(arr, sum, n-1);
+        if(arr[n] <= amount)
+            dp[n][amount] = Math.min(change(arr,n-1,amount), 1 + change(arr,n,amount-arr[n]));
+        else
+            dp[n][amount] = change(arr,n-1,amount);
 
-            return Math.min(take, notTake);
-        }
+        return dp[n][amount];
 
-        return minCoins(arr, sum, n-1);
     }
 
-    public static int recursiveMinCoinChange(int[] arr, int W, int n){
+    public static  int change(int[] arr,int n,int amount){
 
-        if(n==0)
-            return Integer.MAX_VALUE;
+        if(amount == 0)
+            return 0;
 
-        if(W==0)
-            return 1;
+        if(n < 0)
+            return 1000000;
 
-        if(arr[n-1] == W)
-            return 1;
-
-        if(arr[n-1] < W)
-            return Math.min(recursiveMinCoinChange(arr,W, n-1) , 1 + recursiveMinCoinChange(arr, W-arr[n-1], n));
+        if(arr[n] <= amount)
+            return Math.min(change(arr,n-1,amount), 1 + change(arr,n,amount-arr[n]));
         else
-            return recursiveMinCoinChange(arr, W, n-1);
+            return change(arr,n-1,amount);
     }
 }

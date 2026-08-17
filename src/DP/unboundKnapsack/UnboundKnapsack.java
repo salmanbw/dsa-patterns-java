@@ -9,6 +9,7 @@ public class UnboundKnapsack {
         int W = 50;
 
         System.out.println(unboundedKnapsack(wt,val,W));
+        System.out.println(recursiveUnbounded(wt, val, W, wt.length-1));
     }
 
     public static int unboundedKnapsack(int[] wt, int[] val, int W) {
@@ -35,5 +36,17 @@ public class UnboundKnapsack {
         }
 
         return dp[n][W];
+    }
+
+    public static int recursiveUnbounded(int[] wt, int[] val, int W, int n){
+
+        if(W ==0 || n < 0)
+            return 0;
+
+        if(wt[n] <= W)
+            return Math.max(recursiveUnbounded(wt, val, W, n-1), val[n] + recursiveUnbounded(wt, val, W- wt[n], n));
+        else
+            return recursiveUnbounded(wt, val, W, n-1);
+
     }
 }

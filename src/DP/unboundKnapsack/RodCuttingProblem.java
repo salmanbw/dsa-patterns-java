@@ -14,6 +14,19 @@ public class RodCuttingProblem {
         System.out.println("2 solution -- "+recursiveRod(arr1,length1,arr1.length));
         System.out.println("DP solution -- "+dpRod(arr,length));
         System.out.println("DP solution 2-- "+dpRod(arr1,length1));
+
+        System.out.println("recursive -- "+recursiveRodCutting(arr,length,length));
+    }
+
+    public static int recursiveRodCutting(int[] arr, int n, int length){
+
+        if(length ==0 || n ==0)
+            return 0;
+
+        if(n <= length)
+            return Math.max(recursiveRodCutting(arr, n-1,length), arr[n-1] + recursiveRodCutting(arr, n, length-n));
+        else
+            return recursiveRodCutting(arr, n-1,length);
     }
 
     public static int recursiveRod(int[] arr, int W, int n){
