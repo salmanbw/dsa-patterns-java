@@ -10,14 +10,14 @@ public class ReverseString {
 
     public static String reverse(String s){
 
-        String[] wordArray = s.split(" ");
+        String[] wordArray = s.trim().split("\\s+");
         String reverseString = "";
         int n = wordArray.length;
 
-        for(int i=n-1;i>=0;i--){
-            reverseString = reverseString.trim() + " " + wordArray[i];
+        for(int i=n-1;i>=1;i--){
+            reverseString += wordArray[i] + " " ;
         }
 
-        return reverseString;
+        return reverseString + wordArray[0];
     }
 }

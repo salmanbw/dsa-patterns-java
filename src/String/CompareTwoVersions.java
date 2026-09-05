@@ -6,10 +6,10 @@ public class CompareTwoVersions {
 
     public static void main(String[] args) {
 
-        String s1 = "1.01";
-        String s2 = "1";
+        String s1 = "1.12";
+        String s2 = "11.1";
 
-        //System.out.println(compareVersions(s1,s2));
+        System.out.println(compareVersions(s1,s2));
 
         int num = s1.charAt(0);
         System.out.println(num);
